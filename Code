@@ -1,0 +1,26 @@
+letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+cipher = {letters[i]: letters[(i-3) % len(letters)] for i in range(len(letters))}
+
+def transform_message(message, cipher):
+    tmsg = ''
+    for c in message:
+        if c in list(letters):
+            tmsg = tmsg + str(cipher[c])
+        else:
+            tmsg += c
+    return tmsg
+
+test = "I come to bury Caesar, not to praise him."
+print(test)
+ttest = transform_message(test,cipher)
+print(ttest)
+
+cipher2 = res = dict((v,k) for k,v in cipher.items())
+
+tmsg2 = ""
+for x in ttest:
+    if x in cipher2.keys():
+        tmsg2 += cipher2[x]
+    else:
+        tmsg2 += x
+print(tmsg2)
